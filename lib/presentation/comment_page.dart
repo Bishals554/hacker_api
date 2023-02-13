@@ -29,7 +29,7 @@ class _CommentPageState extends State<CommentPage> {
 
   getComments() async {
     final commentIds = List<int>.from(widget.items[widget.index]['kids']);
-    final response = commentIds.map((id) => Api.getItem(id));
+    final response = commentIds.map((itemId) => Api.getItem(itemId));
     final commentData = await Future.wait(response);
     setState(() {
       comments = commentData;

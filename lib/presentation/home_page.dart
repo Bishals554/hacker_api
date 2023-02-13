@@ -17,7 +17,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final topStories = [];
   var items = [];
-  var comments = [];
 
   @override
   void initState() {
@@ -27,7 +26,7 @@ class _HomePageState extends State<HomePage> {
 
   getTopStories() async {
     final topStories = await Api.getTopStories();
-    final response = topStories.take(20).map((id) => Api.getItem(id));
+    final response = topStories.take(20).map((itemId) => Api.getItem(itemId));
     final itemData = await Future.wait(response);
 
 
@@ -61,6 +60,7 @@ class _HomePageState extends State<HomePage> {
                  },
                   leading: Text('${index + 1}.', style: TextStyle(fontSize: 18)),
                   title: Text(items[index]['title'],style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w500),),
+                  trailing: Icon(Icons.arrow_forward_ios_sharp),
                 ),
               );
           }
